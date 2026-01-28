@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guest Access | WiFi@UJ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="" class="logo">
+        <h3>Guest Registration</h3>
+        <p>Please enter your details for 1-hour access</p>
+        
+        <form action="/auth/login" method="POST">
+            <input type="text" name="username" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="hidden" name="type" value="guest">
+            <button type="submit" class="btn btn-blue">Get Guest Access</button>
+        </form>
+        
+        <a href="landing.html" style="color: #ccc; font-size: 0.8rem; text-decoration: none; display: block; margin-top: 15px;">← Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel | WiFi@UJ</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    main { max-width: 800px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 2rem; color: #ccc; }
+    th, td { padding: 12px; border-bottom: 1px solid #444; text-align: left; }
+    th { color: #0057b7; text-transform: uppercase; font-size: 0.8rem; }
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; background: #00a859; color: white; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WiFi Management Console</h1>
+    <p>Live Authenticated Sessions</p>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Username</th>
+          <th>Device IP</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="session-table">
+        </tbody>
+    </table>
+    <a href="/auth/logout" class="btn secondary">Logout Admin</a>
+  </main>
+
+  <script>
+    async function loadSessions() {
+        const response = await fetch('/admin/sessions');
+        const data = await response.json();
+        const table = document.getElementById('session-table');
+        
+        table.innerHTML = data.sessions.map(s => `
+            <tr>
+                <td>${new Date(s.time).toLocaleTimeString()}</td>
+                <td><strong>${s.user}</strong></td>
+                <td>${s.ip}</td>
+                <td><span class="badge">Active</span></td>
+            </tr>
+        `).join('');
+    }
+    loadSessions();
+    setInterval(loadSessions, 5000); // Auto-refresh every 5 seconds
+  </script>
+</body>
+</html>
+

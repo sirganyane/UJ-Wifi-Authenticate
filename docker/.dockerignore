@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+uj_wifi.db
+server.key
+server.cert
+.env
+.git
+Dockerfile
+docker-compose.yml

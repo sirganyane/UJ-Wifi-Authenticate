@@ -1,0 +1,26 @@
+UJ WIFI AUTHENTICATION SYSTEM - 2026 ROLLOUT
+--------------------------------------------------
+
+SLIDE 1: Project Overview
+- Purpose: Secure WiFi access for Madibeng Campus.
+- Technology Stack: Docker (Containerization), Node.js (Portal), OpenLDAP (Auth), MySQL (Audit).
+
+SLIDE 2: Student Experience (The Front-End)
+- Modern, Responsive UI with UJ Branding.
+- Seamless Redirect: From Landing -> LDAP Login -> Success Page.
+- QR-Code Integration: Scan to connect automatically.
+
+SLIDE 3: Security & Identity (The Core)
+- LDAP Integration: Direct authentication using UJ Student IDs.
+- Container Isolation: Database is hidden from the public network for security.
+- Auto-Restart: System recovers automatically from power outages (Resilience).
+
+SLIDE 4: ICT Audit & Compliance (The Back-End)
+- Real-time Session Tracking: Logs User, IP, and Device details.
+- Admin Dashboard: Live view of campus network activity.
+- Export Feature: One-click CSV reports for ICT weekly audits.
+
+SLIDE 5: Scalability & Monitoring
+- Health Monitoring: Scripted checks for system uptime.
+- Scalability: Ready to expand from Madibeng to APK, APB, and DFC campuses.
+--------------------------------------------------

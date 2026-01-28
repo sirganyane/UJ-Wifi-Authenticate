@@ -1,0 +1,63 @@
+:root {
+    --uj-orange: #ff6b00;
+    --uj-blue: #0057b7;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Fixed Madibeng Background */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://www.uj.ac.za/wp-content/uploads/2021/10/madibeng-building.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.container {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+    /* Stable CDN Link */
+    content: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/af/University_of_Johannesburg_Logo.svg/1200px-University_of_Johannesburg_Logo.svg.png');
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-orange { background: var(--uj-orange); color: white; }
+.btn-blue { background: var(--uj-blue); color: white; }
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 4px;
+    border: none;
+    box-sizing: border-box;
+}

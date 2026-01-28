@@ -1,0 +1,30 @@
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const grantUrl = urlParams.get('base_grant_url');
+    const continueUrl = urlParams.get('user_continue_url');
+    const clientIp = urlParams.get('client_ip') || "10.54.12.198";
+
+    // Store IP in local storage for the success page to read
+    localStorage.setItem('user_ip', clientIp);
+
+    const loginForm = document.querySelector('form[action="/auth/login"]');
+    if (loginForm) {
+      const inputs = [
+        { name: 'base_grant_url', value: grantUrl },
+        { name: 'user_continue_url', value: continueUrl },
+        { name: 'client_ip', value: clientIp }
+      ];
+
+      inputs.forEach(data => {
+        if (data.value) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = data.name;
+          input.value = data.value;
+          loginForm.appendChild(input);
+        }
+      });
+    }
+  });
+</script>

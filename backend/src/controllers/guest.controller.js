@@ -1,0 +1,1 @@
+exports.guest = (req,res)=>res.send('Guest access');

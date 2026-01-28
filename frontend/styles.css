@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    /* Fixed UJ Madibeng Background */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('https://www.uj.ac.za/wp-content/uploads/2021/10/madibeng-building.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    width: 200px; /* Branded sizing */
+    /* Reliable UJ Logo Source */
+    content: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/af/University_of_Johannesburg_Logo.svg/1200px-University_of_Johannesburg_Logo.svg.png');
+}
+
+.useful-links {
+    margin-top: 20px;
+    display: grid;
+    gap: 10px;
+}
+/* Update these in public/styles.css */
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('https://www.uj.ac.za/wp-content/uploads/2021/10/madibeng-building.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.logo {
+    content: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/af/University_of_Johannesburg_Logo.svg/1200px-University_of_Johannesburg_Logo.svg.png');
+    max-width: 200px;
+}

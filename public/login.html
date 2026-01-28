@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UJ Login | WiFi Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="" class="logo">
+        <h3>Sign In</h3>
+        <p>Use your UJ Student or Staff credentials</p>
+        
+        <form action="/auth/login" method="POST">
+            <input type="text" name="username" placeholder="Student/Staff Number" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="btn btn-orange">Connect to WiFi</button>
+        </form>
+        
+        <a href="landing.html" style="color: #ccc; font-size: 0.8rem; text-decoration: none; display: block; margin-top: 15px;">← Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+services:
+  uj-wifi-portal:
+    build: ./backend
+    container_name: uj_secure_portal
+    # CHANGE THIS LINE BELOW:
+    command: node server.js 
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: always

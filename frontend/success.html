@@ -1,0 +1,37 @@
+<main>
+  
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/af/University_of_Johannesburg_Logo.svg/1200px-University_of_Johannesburg_Logo.svg.png" 
+     alt="UJ Logo" class="logo" onerror="this.src='https://via.placeholder.com/200x80?text=UJ+LOGO'">
+
+<script>
+  async function loadMetadata() {
+    const response = await fetch('/api/me');
+    const data = await response.json();
+    if (data.username) {
+      document.getElementById('display-ip').innerText = data.ip;
+      document.getElementById('display-model').innerText = data.model;
+      document.getElementById('display-os').innerText = data.os;
+    }
+  }
+  window.onload = loadMetadata;
+</script> 
+     
+     
+    <h1 style="color: #00a859;">Success!</h1>
+    <p>You are now connected to WiFi@UJ.</p>
+    
+    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; text-align: left; margin-bottom: 1.5rem; font-size: 0.85rem;">
+      <div style="margin-bottom: 8px;"><small style="color: #aaa;">Device IP:</small><br><strong id="display-ip">10.54.12.198</strong></div>
+      <div style="margin-bottom: 8px;"><small style="color: #aaa;">Operating System:</small><br><strong id="display-os">Detecting...</strong></div>
+      <div style="margin-bottom: 8px;"><small style="color: #aaa;">Device Model:</small><br><strong id="display-model">Generic Web Client</strong></div>
+      <div><small style="color: #aaa;">Session Status:</small><br><strong style="color: #00a859;">Unlimited Browsing</strong></div>
+    </div>
+
+    <div class="options" style="display: flex; flex-direction: column; gap: 10px;">
+        <a class="btn" href="https://ulink.uj.ac.za/" target="_blank">Go to uLink</a>
+        <a class="btn secondary" href="https://moodle.uj.ac.za/" target="_blank">UJ Moodle</a>
+    </div>
+    <a href="/logout" style="color: #54dc32; display: block; margin-top: 1.5rem; text-decoration: none; font-size: 0.8rem;">Continue Browsing</a>
+</main>
+
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UJ ICT - WiFi Audit Dashboard</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+        .header { background: #003366; color: white; padding: 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #ff6600; color: white; }
+        .btn-export { background: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Madibeng Campus - WiFi Session Logs</h2>
+        <button class="btn-export" onclick="exportTableToCSV('wifi_audit_report.csv')">Download CSV Report</button>
+    </div>
+    <table id="logTable">
+        <thead>
+            <tr>
+                <th>ID</th><th>Username</th><th>IP Address</th><th>Device</th><th>Status</th><th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script>
+        async function fetchLogs() {
+            const res = await fetch('/admin/sessions');
+            const data = await res.json();
+            const body = document.getElementById('tableBody');
+            body.innerHTML = data.map(log => `
+                <tr>
+                    <td>${log.id}</td><td>${log.username}</td><td>${log.ip_address}</td>
+                    <td>${log.device_model}</td><td>${log.status}</td><td>${log.connection_time}</td>
+                </tr>`).join('');
+        }
+
+        function exportTableToCSV(filename) {
+            let csv = [];
+            let rows = document.querySelectorAll("table tr");
+            for (let i = 0; i < rows.length; i++) {
+                let row = [], cols = rows[i].querySelectorAll("td, th");
+                for (let j = 0; j < cols.length; j++) row.push(cols[j].innerText);
+                csv.push(row.join(","));
+            }
+            let csvFile = new Blob([csv.join("\n")], {type: "text/csv"});
+            let downloadLink = document.createElement("a");
+            downloadLink.download = filename;
+            downloadLink.href = window.URL.createObjectURL(csvFile);
+            downloadLink.click();
+        }
+        setInterval(fetchLogs, 5000); // Auto-refresh every 5 seconds
+        fetchLogs();
+    </script>
+</body>
+</html>

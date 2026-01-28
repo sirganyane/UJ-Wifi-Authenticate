@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connected | WiFi@UJ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="" class="logo">
+        <h2 style="color: #00ff88;">Connection Success</h2>
+        
+        <div style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; font-size: 0.8em;">
+            <p><strong>IP Address:</strong> <span id="ip">...</span></p>
+            <p><strong>Device OS:</strong> <span id="os">...</span></p>
+            <p><strong>Device Model:</strong> <span id="model">...</span></p>
+        </div>
+
+        <a href="https://ulink.uj.ac.za" class="btn btn-orange" style="margin-top: 20px;">Go to uLink</a>
+    </div>
+
+    <script>
+        // Fetch session data from the API we created in server.js
+        fetch('/api/session-info')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('ip').innerText = data.ip;
+                document.getElementById('os').innerText = data.os;
+                document.getElementById('model').innerText = data.model;
+            });
+    </script>
+</body>
+</html>
+New-Item -Path .\public -Name "success.html" -ItemType "file" -Value '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UJ WiFi - Connected</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; padding: 50px; }
+        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-block; border-top: 8px solid #003366; }
+        h1 { color: #003366; }
+        .status { color: #ff6600; font-weight: bold; font-size: 1.2em; }
+        .details { margin: 20px 0; color: #555; text-align: left; }
+        .btn { background-color: #003366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; }
+        .btn:hover { background-color: #002244; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/images/uj_logo.png" alt="UJ Logo" style="width:150px; margin-bottom:20px;">
+        <h1>Connection Successful</h1>
+        <p class="status">You are now authenticated on WIFI@UJ</p>
+        <div class="details">
+            <p><strong>Username:</strong> <span id="user-display">Student</span></p>
+            <p><strong>Session:</strong> Active</p>
+            <p><strong>Campus:</strong> Madibeng</p>
+        </div>
+        <a href="/" class="btn">Disconnect Session</a>
+    </div>
+</body>
+</html>'

@@ -1,0 +1,5 @@
+SSID,Format / String,Branding
+Staff_Access,WIFI:T:WPA;S:Staff_Access;P:;;,Blue / UJ Shield Logo
+Staff_Access_2,WIFI:T:WPA;S:Staff_Access_2;P:;;,Blue / UJ Shield Logo
+WIFI@UJ,WIFI:T:WPA;S:WIFI@UJ;P:;;,Orange / UJ Shield Logo
+Guest_WIFI@UJ,WIFI:T:nopass;S:Guest_WIFI@UJ;;,Grey / UJ Logo

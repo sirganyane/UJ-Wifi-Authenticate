@@ -1,0 +1,9 @@
+dn: ou=people,dc=uj,dc=ac,dc=za
+objectClass: organizationalUnit
+ou: people
+
+dn: cn=2026001,ou=people,dc=uj,dc=ac,dc=za
+objectClass: inetOrgPerson
+cn: 2026001
+sn: Student
+userPassword: Password123

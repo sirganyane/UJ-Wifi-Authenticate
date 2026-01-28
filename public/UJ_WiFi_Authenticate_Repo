@@ -1,0 +1,28 @@
+const QRCode = require('qrcode');
+const fs = require('fs');
+const path = require('path');
+
+const qrDir = path.join(__dirname, 'public', 'qrcodes');
+
+// Ensure the directory exists
+if (!fs.existsSync(qrDir)) {
+    fs.mkdirSync(qrDir, { recursive: true });
+}
+
+// WiFi Configurations for UJ Madibeng
+const networks = [
+    { name: 'WIFI@UJ', ssid: 'WIFI@UJ', pass: '', type: 'nopass' },
+    { name: 'Staff_Access', ssid: 'UJ_Staff', pass: 'UJStaff2026', type: 'WPA' }
+];
+
+networks.forEach(net => {
+    const qrData = `WIFI:S:${net.ssid};T:${net.type};P:${net.pass};;`;
+    const fileName = `${net.name.toLowerCase()}_qr.png`;
+    
+    QRCode.toFile(path.join(qrDir, fileName), qrData, {
+        color: { dark: '#003366', light: '#FFFFFF' } // UJ Blue and White
+    }, (err) => {
+        if (err) console.error(`Error generating ${net.name}:`, err);
+        else console.log(`✅ Generated ${net.name} QR Code`);
+    });
+});
