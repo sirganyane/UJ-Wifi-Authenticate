@@ -120,3 +120,4 @@ A secure captive portal for UJ students featuring LDAP authentication and centra
 
 
 >>>>>>> bcbd82d (Initial commit)
+# UJ_WIFI_AUTHENTICATE_Repo
