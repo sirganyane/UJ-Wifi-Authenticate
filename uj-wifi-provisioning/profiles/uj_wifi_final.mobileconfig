@@ -1,0 +1,60 @@
+[Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$PWD\certs\uj_root_ca.crt"))
+<dict>
+    <key>PayloadCertificateFileName</key>
+    <string>uj_root_ca.crt</string>
+    <key>PayloadContent</key>
+    <data>
+    PASTE_YOUR_LONG_BASE64_STRING_HERE
+    </data>
+    <key>PayloadIdentifier</key>
+    <string>com.uj.rootca.payload</string>
+    <key>PayloadType</key>
+    <string>com.apple.security.root</string>
+    <key>PayloadUUID</key>
+    <string>A1B2C3D4-E5F6-4A5B-8C9D-0E1F2A3B4C5D</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+$ProfileDir = "C:\Users\Sir G\Downloads\WiFi@UJ-20260127T122425Z-3-001\UJ_WiFi_Authenticate_Repo\uj-wifi-provisioning\profiles"
+$TemplatePath = Join-Path $ProfileDir "uj_wifi.mobileconfig"
+
+$EnterpriseTemplate = @'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>SSID_STR</key><string>UJ_Enterprise_WiFi</string>
+            <key>PayloadType</key><string>com.apple.wifi.managed</string>
+            <key>PayloadUUID</key><string>5C7D9A4E-7B93-4B9F-8E2D-5A8C92B10F34</string>
+            <key>PayloadIdentifier</key><string>com.uj.wifi</string>
+            <key>PayloadVersion</key><integer>1</integer>
+            <key>EncryptionType</key><string>WPA2</string>
+            <key>EAPClientConfiguration</key>
+            <dict>
+                <key>AcceptEAPTypes</key>
+                <array><integer>25</integer></array> <key>TrustedServerNames</key>
+                <array><string>radius.uj.ac.za</string></array> </dict>
+        </dict>
+        <dict>
+            <key>PayloadCertificateFileName</key><string>uj_root_ca.crt</string>
+            <key>PayloadContent</key><data></data>
+            <key>PayloadType</key><string>com.apple.security.root</string>
+            <key>PayloadUUID</key><string>A1B2C3D4-E5F6-4A5B-8C9D-0E1F2A3B4C5D</string>
+            <key>PayloadIdentifier</key><string>com.uj.rootca</string>
+            <key>PayloadVersion</key><integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key><string>UJ Enterprise WiFi</string>
+    <key>PayloadIdentifier</key><string>com.uj.profile.main</string>
+    <key>PayloadType</key><string>Configuration</string>
+    <key>PayloadUUID</key><string>F9E8D7C6-B5A4-4321-8765-0987654321BA</string>
+    <key>PayloadVersion</key><integer>1</integer>
+</dict>
+</plist>
+'@
+
+$EnterpriseTemplate | Set-Content $TemplatePath -Encoding UTF8
+Write-Host "Updated template for Enterprise (PEAP) at $TemplatePath" -ForegroundColor Green

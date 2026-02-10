@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>SSID_STR</key>
+            <string>UJ_Secure_WiFi</string>
+            <key>HIDDEN_NETWORK</key>
+            <false/>
+            <key>EncryptionType</key>
+            <string>WPA2</string>
+            <key>PayloadDescription</key>
+            <string>Configures UJ Secure Wi-Fi settings</string>
+            <key>PayloadDisplayName</key>
+            <string>UJ Wi-Fi</string>
+            <key>PayloadIdentifier</key>
+            <string>com.uj.wifi.config</string>
+            <key>PayloadType</key>
+            <string>com.apple.wifi.managed</string>
+            <key>PayloadUUID</key>
+            <string>B2D8A412-1234-4A5B-8C9D-E5F6A7B8C9D0</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+
+        <dict>
+            <key>PayloadCertificateFileName</key>
+            <string>uj_root_ca.crt</string>
+            <key>PayloadContent</key>
+            <data>{{CA_CERT_DATA}}</data> 
+            <key>PayloadDescription</key>
+            <string>Installs UJ Root CA</string>
+            <key>PayloadDisplayName</key>
+            <string>UJ Root CA</string>
+            <key>PayloadIdentifier</key>
+            <string>com.uj.rootca.config</string>
+            <key>PayloadType</key>
+            <string>com.apple.security.root</string>
+            <key>PayloadUUID</key>
+            <string>C3E9B523-5678-4B6C-9D0E-F1G2H3I4J5K6</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>UJ Wi-Fi Provisioning Profile</string>
+    <key>PayloadIdentifier</key>
+    <string>com.uj.main.profile</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>A1C7D3F9-90AB-4CDE-8EFG-1234567890AB</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>

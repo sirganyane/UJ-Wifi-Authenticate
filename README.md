@@ -121,3 +121,24 @@ A secure captive portal for UJ students featuring LDAP authentication and centra
 
 >>>>>>> bcbd82d (Initial commit)
 # UJ_WIFI_AUTHENTICATE_Repo
+
+
+# UJ Wi-Fi Provisioning Project
+
+This project generates a private Certificate Authority (CA) and an Apple Configuration Profile (`.mobileconfig`) for seamless Wi-Fi onboarding.
+
+## 🛠 Setup
+1. Run `./setup_all.sh` to generate keys and build the profile.
+2. The script will prompt you to start a local web server.
+
+## 📱 Client Installation Steps
+### iOS / iPadOS
+1. Open Safari and navigate to the hosted `.mobileconfig` link.
+2. Tap **Allow** to download the profile.
+3. Open **Settings > Profile Downloaded > Install**.
+4. **Crucial:** Go to **Settings > General > About > Certificate Trust Settings** and toggle **ON** the "UJ-Root-CA".
+
+### macOS
+1. Open the downloaded `.mobileconfig` file.
+2. Navigate to **System Settings > Privacy & Security > Profiles**.
+3. Double-click the UJ Profile and click **Install**.

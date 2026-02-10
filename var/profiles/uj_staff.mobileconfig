@@ -1,0 +1,6 @@
+location /profiles {
+    autoindex off; # Prevent users from seeing all profiles
+    types {
+        application/x-apple-aspen-config mobileconfig;
+    }
+}

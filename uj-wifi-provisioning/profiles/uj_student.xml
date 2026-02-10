@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+    <name>UJ_Enterprise_WiFi</name>
+    <SSIDConfig>
+        <SSID>
+            <name>UJ_Enterprise_WiFi</name>
+        </SSID>
+    </SSIDConfig>
+    <connectionType>ESS</connectionType>
+    <connectionMode>auto</connectionMode>
+    <MSM>
+        <security>
+            <authEncryption>
+                <authentication>WPA2</authentication>
+                <encryption>AES</encryption>
+                <useOneX>true</useOneX>
+            </authEncryption>
+            <OneX xmlns="http://www.microsoft.com/networking/OneX/v1">
+                <EAPConfig>
+                    <EapHostConfig xmlns="http://www.microsoft.com/biometrics/xml/schema/v1">
+                        <EapMethod>
+                            <Type xmlns="http://www.microsoft.com/networking/EapType">25</Type>
+                            <VendorId xmlns="http://www.microsoft.com/networking/EapType">0</VendorId>
+                            <VendorType xmlns="http://www.microsoft.com/networking/EapType">0</VendorType>
+                            <AuthorId xmlns="http://www.microsoft.com/networking/EapType">0</AuthorId>
+                        </EapMethod>
+                        <Config xmlns="http://www.microsoft.com/networking/EapServerConfig/v1">
+                            <ServerValidationParameters>
+                                <DisableUserPromptForServerValidation>false</DisableUserPromptForServerValidation>
+                                <ServerNames>radius.uj.ac.za</ServerNames>
+                            </ServerValidationParameters>
+                        </Config>
+                    </EapHostConfig>
+                </EAPConfig>
+            </OneX>
+        </security>
+    </MSM>
+</WLANProfile>

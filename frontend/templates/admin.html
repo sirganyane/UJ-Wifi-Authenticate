@@ -1,0 +1,283 @@
+<link>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+        --uj-orange: #FF8C00;
+        --uj-dark: #121212;
+        --uj-grey: #4A4A4A;
+    }
+    body.dark-mode { --bg: #0d0d0d; --text: #e0e0e0; --card: #1a1a1a; --border: #333; }
+    body.light-mode { --bg: #f4f7f6; --text: #212529; --card: #ffffff; --border: #dee2e6; }
+
+    body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; transition: 0.3s; overflow: hidden; }
+    .app-container { display: flex; height: 100vh; width: 100vw; }
+
+    /* Sidebar */
+    #sidebar { width: 280px; background: var(--uj-dark); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
+    .nav-item { padding: 15px 25px; color: #888; cursor: pointer; display: flex; align-items: center; gap: 15px; transition: 0.2s; border-left: 4px solid transparent; }
+    .nav-item.active { background: #1a1a1a; color: white; border-left-color: var(--uj-orange); }
+
+    /* Main Content */
+    #main-content { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; }
+    .top-bar { background: var(--card); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+    
+    .module-view { display: none; padding: 30px; animation: slideUp 0.3s ease; }
+    .module-view.active { display: block; }
+
+    /* UI Components */
+    .uj-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .log-window { background: #000; color: #0f0; font-family: 'Courier New', monospace; padding: 15px; border-radius: 8px; height: 180px; overflow-y: auto; font-size: 0.8rem; }
+    
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<body class="light-mode">
+<div class="app-container">
+    <nav id="sidebar">
+        <div class="p-4 text-center border-bottom border-secondary">
+            <h3 class="fw-bold m-0">UJ <span style="color:var(--uj-orange)">WIFI</span></h3>
+            <small class="text-muted text-uppercase">Root Authority</small>
+        </div>
+        <div class="mt-3 flex-grow-1">
+            <div class="nav-item active" onclick="nav('dashboard')"><i class="fa fa-th-large"></i> Dashboard</div>
+            <div class="nav-item" onclick="nav('nodes')"><i class="fa fa-network-wired"></i> Network Nodes</div>
+            <div class="nav-item" onclick="nav('monitor')"><i class="fa fa-microchip"></i> Network Monitor</div>
+            <div class="nav-item" onclick="nav('vouchers')"><i class="fa fa-ticket-alt"></i> Voucher Engine</div>
+            <div class="nav-item" onclick="nav('blacklist')"><i class="fa fa-user-shield"></i> Blacklist Manager</div>
+            <div class="nav-item" onclick="nav('tools')"><i class="fa fa-cogs"></i> System Tools</div>
+        </div>
+        <div class="p-4">
+            <button class="btn btn-sm btn-outline-light w-100 mb-2" onclick="toggleMode()">🌓 Switch Theme</button>
+            <button class="btn btn-danger btn-sm w-100">Logout</button>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <header class="top-bar">
+            <h5 class="fw-bold m-0" id="m-title">DASHBOARD</h5>
+            <div class="d-flex align-items-center gap-3">
+                <span class="badge bg-dark px-3 py-2">SYS_IP: 10.0.0.1</span>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/af/University_of_Johannesburg_Logo.svg/1200px-University_of_Johannesburg_Logo.svg.png" height="45" alt="UJ Logo">
+            </div>
+        </header>
+
+        <div id="dashboard" class="module-view active">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="uj-card">
+                        <h6 class="fw-bold text-muted mb-4">ALL CAMPUS USAGE (REAL-TIME)</h6>
+                        <canvas id="usageChart" height="280"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="uj-card bg-dark text-white mb-4">
+                        <small class="opacity-75">USAGE DATA TODAY</small>
+                        <h2 class="fw-bold mt-1">8.42 TB</h2>
+                        <div class="progress mt-2" style="height:4px;"><div class="progress-bar bg-warning" style="width:75%"></div></div>
+                    </div>
+                    <div class="uj-card">
+                        <h6 class="fw-bold mb-3">POLICY MONITOR & COMMANDER</h6>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-sm btn-outline-primary text-start"><i class="fa fa-check-circle me-2"></i> QoS Protocol Active</button>
+                            <button class="btn btn-sm btn-outline-primary text-start"><i class="fa fa-shield-alt me-2"></i> Policy: High Bandwidth</button>
+                            <hr>
+                            <button class="btn btn-warning w-100 fw-bold py-2" onclick="alert('Priority Mode: ENGAGED')">ACTIVATE PRIORITY MODE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="nodes" class="module-view">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="uj-card border-top border-4 border-success">
+                        <h6 class="fw-bold">APK (MADIBENG)</h6>
+                        <div class="d-flex justify-content-between my-2">
+                            <span class="h4 m-0 fw-bold">850 Mbps</span>
+                            <small class="text-success">Up: 99.9%</small>
+                        </div>
+                        <canvas id="node1Chart" height="80"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="uj-card border-top border-4 border-success">
+                        <h6 class="fw-bold">APB (STUDENT CTR)</h6>
+                        <div class="d-flex justify-content-between my-2">
+                            <span class="h4 m-0 fw-bold">420 Mbps</span>
+                            <small class="text-success">Up: 99.8%</small>
+                        </div>
+                        <canvas id="node2Chart" height="80"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="uj-card border-top border-4 border-danger">
+                        <h6 class="fw-bold text-danger">DFC (ENGINEERING)</h6>
+                        <div class="d-flex justify-content-between my-2">
+                            <span class="h4 m-0 fw-bold text-danger">TIMEOUT</span>
+                            <small class="text-danger">Lat: 450ms</small>
+                        </div>
+                        <canvas id="node3Chart" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="uj-card">
+                <h6 class="fw-bold text-danger mb-3"><i class="fa fa-exclamation-triangle me-2"></i> DISRUPTIONS & TIMEOUT LOG</h6>
+                <div class="log-window" id="node-log"></div>
+            </div>
+        </div>
+
+        <div id="monitor" class="module-view">
+            <div class="uj-card p-3 mb-3 d-flex gap-3 bg-light">
+                <button class="btn btn-dark" onclick="alert('Tracing Packets...')"><i class="fa fa-search me-2"></i> TRACE PACKETS</button>
+                <button class="btn btn-outline-dark" onclick="alert('Scanning Ports...')"><i class="fa fa-project-diagram me-2"></i> PORT SCANNER</button>
+                <button class="btn btn-outline-danger" onclick="alert('DNS Flushed')"><i class="fa fa-broom me-2"></i> FLUSH DNS</button>
+            </div>
+            <div class="uj-card p-0 overflow-hidden">
+                <table class="table table-hover mb-0 align-middle">
+                    <thead class="table-dark">
+                        <tr><th>TIME</th><th>STUDENT ID</th><th>DEVICE IP</th><th>MAC ADDRESS</th><th>LOAD</th><th>ACTION</th></tr>
+                    </thead>
+                    <tbody id="monitor-stream"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="vouchers" class="module-view">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="uj-card">
+                        <h6 class="fw-bold mb-4">VOUCHER ALLOCATION</h6>
+                        <label class="small fw-bold">Data Allocation (MB)</label>
+                        <input type="number" id="vData" class="form-control mb-3" value="1000">
+                        <label class="small fw-bold">Duration Policy</label>
+                        <select class="form-select mb-4" id="vDur">
+                            <option>Guest (2 Hours)</option>
+                            <option>Staff (24 Hours)</option>
+                        </select>
+                        <button class="btn btn-warning w-100 fw-bold" onclick="genVoucher()">GENERATE QR VOUCHER</button>
+                    </div>
+                </div>
+                <div class="col-md-7 text-center">
+                    <div class="uj-card">
+                        <div id="qr-box" class="p-3 border rounded bg-light d-inline-block">
+                            <i class="fa fa-qrcode fa-10x text-muted"></i>
+                        </div>
+                        <h4 class="fw-bold mt-3 text-orange" id="vCode">XXXX-XXXX</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="blacklist" class="module-view">
+            <div class="uj-card">
+                <h6 class="fw-bold text-danger mb-4">FIREWALL & BLACKLIST CONTROL</h6>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-5"><input type="text" id="banId" class="form-control" placeholder="Target ID / MAC Address"></div>
+                    <div class="col-md-4">
+                        <select id="banReason" class="form-select">
+                            <option>Bandwidth Abuse</option>
+                            <option>Unauthorized Security Attempt</option>
+                            <option>Policy Violation</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3"><button class="btn btn-danger w-100 fw-bold" onclick="addBan()">COMMIT BAN</button></div>
+                </div>
+                <table class="table table-hover border">
+                    <thead class="bg-light"><tr><th>Entity ID</th><th>Reason</th><th>Banned By</th><th>Actions</th></tr></thead>
+                    <tbody id="ban-list">
+                        <tr><td>21901244</td><td>Policy Violation</td><td>Sir G</td><td><button class="btn btn-sm btn-link text-danger">Revoke</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="tools" class="module-view">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="uj-card">
+                        <h6 class="fw-bold">NETWORK MANAGER & BUFFER</h6>
+                        <label class="small fw-bold mt-3">Dynamic Buffer Allocation (MB)</label>
+                        <input type="range" class="form-range" min="100" max="2000" step="50" id="bRange" oninput="document.getElementById('bVal').innerText=this.value">
+                        <div class="text-center h5 fw-bold mt-2"><span id="bVal">500</span> MB</div>
+                        <button class="btn btn-dark w-100 mt-4" onclick="alert('System Settings Re-synced')">REFRESH NETWORK OPTIONS</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="uj-card border-danger">
+                        <h6 class="fw-bold text-danger">EMERGENCY FLUSH</h6>
+                        <p class="small text-muted">Instantly disconnect all active campus leases and flush ARP tables.</p>
+                        <button class="btn btn-outline-danger w-100 mb-2" onclick="location.reload()">FORCE REFRESH SYSTEM</button>
+                        <button class="btn btn-danger w-100" onclick="alert('All Gateways Flushed')">FLUSH ALL CAMPUS SESSIONS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    function nav(id) {
+        document.querySelectorAll('.module-view').forEach(v => v.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.currentTarget.classList.add('active');
+        document.getElementById('m-title').innerText = id.toUpperCase().replace('_',' ');
+    }
+
+    function toggleMode() { document.body.classList.toggle('dark-mode'); document.body.classList.toggle('light-mode'); }
+
+    // REAL-TIME DATA LOGIC
+    const charts = {};
+    const chartIds = ['usageChart', 'node1Chart', 'node2Chart', 'node3Chart'];
+    chartIds.forEach(id => {
+        charts[id] = new Chart(document.getElementById(id), {
+            type: 'line',
+            data: { labels: Array(15).fill(''), datasets: [{ data: Array(15).fill(0), borderColor: '#FF8C00', tension: 0.4, fill: true, backgroundColor: 'rgba(255,140,0,0.05)', pointRadius: 0 }] },
+            options: { plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { display: false } } }
+        });
+    });
+
+    function updateSystem() {
+        // Charts
+        chartIds.forEach(id => {
+            charts[id].data.datasets[0].data.shift();
+            charts[id].data.datasets[0].data.push(Math.random() * 100);
+            charts[id].update('none');
+        });
+
+        // Disruption Log
+        const log = document.getElementById('node-log');
+        if (Math.random() > 0.7) {
+            const time = new Date().toLocaleTimeString();
+            log.innerHTML += `[${time}] <span class="text-warning">ALERT:</span> DFC Gateway Timeout Detected...<br>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // Monitor Stream
+        document.getElementById('monitor-stream').innerHTML = `
+            <tr><td>${new Date().toLocaleTimeString()}</td><td>21900142</td><td>10.22.4.5</td><td>BC:EE:7B:11:00</td><td><span class="badge bg-success">1.2 Mbps</span></td><td><button class="btn btn-sm btn-outline-danger" onclick="kick()">KICK</button></td></tr>
+            <tr><td>${new Date().toLocaleTimeString()}</td><td>21884321</td><td>10.22.4.12</td><td>AA:12:CC:DD:EE</td><td><span class="badge bg-success">0.4 Mbps</span></td><td><button class="btn btn-sm btn-outline-danger" onclick="kick()">KICK</button></td></tr>
+        `;
+    }
+
+    function genVoucher() {
+        const code = "UJ-" + Math.floor(Math.random()*90000 + 10000);
+        document.getElementById('vCode').innerText = code;
+        document.getElementById('qr-box').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=WIFI:S:UJ_Guest;P:${code};" />`;
+    }
+
+    function addBan() {
+        const id = document.getElementById('banId').value;
+        if(!id) return;
+        const reason = document.getElementById('banReason').value;
+        document.getElementById('ban-list').innerHTML += `<tr><td>${id}</td><td>${reason}</td><td>Sir G</td><td><button class="btn btn-sm btn-link text-danger">Revoke</button></td></tr>`;
+        alert("Target Blacklisted across all campuses.");
+    }
+
+    setInterval(updateSystem, 1500);
+    updateSystem();
+</script>
+</body>
+<style></style>

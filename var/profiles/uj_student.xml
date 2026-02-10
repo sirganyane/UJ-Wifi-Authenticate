@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+    <name>UJ_Student_WiFi</name>
+    <SSIDConfig>
+        <SSID>
+            <name>UJ_Student_WiFi</name>
+        </SSID>
+    </SSIDConfig>
+    <connectionType>ESS</connectionType>
+    <connectionMode>auto</connectionMode>
+    <MSM>
+        <security>
+            <authEncryption>
+                <authentication>WPA2</authentication>
+                <encryption>AES</encryption>
+                <useOneX>true</useOneX>
+            </authEncryption>
+            <OneX xmlns="http://www.microsoft.com/networking/OneX/v1">
+                <EAPConfig>
+                    <EapHostConfig xmlns="http://www.microsoft.com/encoding/eap/eaphostconfig">
+                        <EapMethod>
+                            <Type xmlns="http://www.microsoft.com/encoding/eap/util">25</Type>
+                            <VendorId xmlns="http://www.microsoft.com/encoding/eap/util">0</VendorId>
+                            <VendorType xmlns="http://www.microsoft.com/encoding/eap/util">0</VendorType>
+                        </EapMethod>
+                        <Config xmlns="http://www.microsoft.com/encoding/eap/cryptho/eapcp">
+                            <EapType xmlns="http://www.microsoft.com/encoding/eap/cryptho/eapcp">
+                                <ServerValidation>
+                                    <TrustedRootCA>INSERT_THUMBPRINT_HERE</TrustedRootCA>
+                                </ServerValidation>
+                            </EapType>
+                        </Config>
+                    </EapHostConfig>
+                </EAPConfig>
+            </OneX>
+        </security>
+    </MSM>
+</WLANProfile>

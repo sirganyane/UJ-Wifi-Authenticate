@@ -1,0 +1,11 @@
+RewriteEngine On
+# Map the /profiles and /certs URLs to the internal folders
+Alias /profiles /var/www/profiles
+Alias /certs /var/www/certs
+
+<Directory "/var/www/profiles">
+    Require all granted
+</Directory>
+<Directory "/var/www/certs">
+    Require all granted
+</Directory>

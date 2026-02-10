@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>UJ WiFi | Student & Staff Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        :root { 
+            --uj-orange: #FF8C00; 
+            --uj-grey: #4A4A4A;
+            --uj-dark-grey: #2D2D2D;
+        }
+
+        body { 
+            /* UJ APK Background with Dark Overlay for professional contrast */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+                        url('https://www.uj.ac.za/wp-content/uploads/2021/10/kingsway-campus.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-card { 
+            border: none;
+            border-top: 8px solid var(--uj-orange); 
+            border-radius: 15px; 
+            /* Glass-morphism effect */
+            background: rgba(255, 255, 255, 0.92); 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .uj-logo-text {
+            font-weight: 800;
+            color: var(--uj-dark-grey);
+            letter-spacing: -1px;
+            font-size: 2.5rem;
+        }
+
+        .uj-logo-text span {
+            color: var(--uj-orange);
+        }
+
+        .btn-uj { 
+            background-color: var(--uj-orange); 
+            color: white; 
+            border: none; 
+            font-weight: 600;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-uj:hover { 
+            background-color: #cc7000; 
+            color: white; 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+        }
+
+        .form-control-lg {
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        #maintenance-alert {
+            border-radius: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="d-flex align-items-center min-vh-100">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card login-card">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <h1 class="uj-logo-text mb-2">UJ <span>WIFI</span></h1>
+                            <h4 class="fw-bold text-dark" id="portal-status-msg">
+                                Welcome to APK Campus
+                            </h4>
+                            <p class="text-muted small">Access the Global Campus Network</p>
+                        </div>
+
+                        <div id="maintenance-alert" class="alert alert-danger text-center {% if not (settings and settings.maintenance_mode) %}d-none{% endif %}">
+                            <strong>Network Notice:</strong> WiFi is currently in maintenance mode.
+                        </div>
+
+                        <form id="login-form" action="/authenticate" method="POST" {% if settings and settings.maintenance_mode %}style="opacity: 0.4; pointer-events: none;"{% endif %}>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-secondary">Student/Staff Number</label>
+                                <input type="text" name="username" class="form-control form-control-lg" placeholder="e.g. 219000000" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold text-secondary">uLink Password</label>
+                                <input type="password" name="password" class="form-control form-control-lg" placeholder="••••••••" required>
+                            </div>
+                            <button type="submit" id="login-button" class="btn btn-uj w-100 shadow-sm" {% if settings and settings.maintenance_mode %}disabled{% endif %}>
+                                AUTHENTICATE & CONNECT
+                            </button>
+                        </form>
+                        
+                        <div class="mt-4 text-center">
+                            <small class="text-muted">By connecting, you agree to the <a href="#" class="text-decoration-none" style="color: var(--uj-orange);">UJ ICT Policy</a></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-3 text-white-50">
+                    <small>© 2026 University of Johannesburg | Auckland Park Kingsway</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        async function syncWithAdmin() {
+            try {
+                const response = await fetch('/api/system-status');
+                const data = await response.json();
+                const btn = document.getElementById('login-button');
+                const form = document.getElementById('login-form');
+                const alertBox = document.getElementById('maintenance-alert');
+                const statusMsg = document.getElementById('portal-status-msg');
+
+                if (data.maintenance_mode) {
+                    btn.disabled = true;
+                    form.style.opacity = '0.4';
+                    form.style.pointerEvents = 'none';
+                    alertBox.classList.remove('d-none');
+                    statusMsg.innerText = "System Maintenance";
+                } else {
+                    btn.disabled = false;
+                    form.style.opacity = '1';
+                    form.style.pointerEvents = 'auto';
+                    alertBox.classList.add('d-none');
+                    statusMsg.innerText = data.portal_message || "Welcome to APK Campus";
+                }
+            } catch (e) { console.log("Connecting to UJ Gateway..."); }
+        }
+        setInterval(syncWithAdmin, 3000);
+    </script>
+</body>
+</html>

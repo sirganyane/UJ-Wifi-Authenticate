@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UJ WiFi Command Center</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #f8f9fa; }
+        .navbar { background-color: #343a40; }
+        .card-stats { color: white; border-radius: 5px; padding: 20px; }
+        .bg-active { background-color: #333; }
+        .bg-health { background-color: #007bff; }
+        .bg-vouchers { background-color: #ffc107; color: black !important; }
+        .bg-threats { background-color: #dc3545; }
+        .section-header { background: #4e5d6c; color: white; padding: 5px 15px; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <a class="navbar-brand" href="#">UJ Admin</a>
+    <div class="navbar-nav">
+        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link" href="#">Wi-Fi Settings</a>
+        <a class="nav-link" href="#">Live Sessions</a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <h2 class="mb-4">UJ WIFI <span style="color: #fd7e14;">COMMAND CENTER</span></h2>
+    
+    <div class="row mb-4">
+        <div class="col-md-3"><div class="card-stats bg-active"><h6>Active Students</h6><h3>140</h3></div></div>
+        <div class="col-md-3"><div class="card-stats bg-health"><h6>Network Health</h6><h3>99%</h3></div></div>
+        <div class="col-md-3"><div class="card-stats bg-vouchers"><h6>Guest Vouchers</h6><h3>52</h3></div></div>
+        <div class="col-md-3"><div class="card-stats bg-threats"><h6>Threats Blocked</h6><h3>0</h3></div></div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="section-header">Live Network Traffic (Mbps)</div>
+        <div class="card-body">
+            <canvas id="trafficChart" height="100"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    const ctx = document.getElementById('trafficChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["8:36:23 PM", "8:36:29 PM", "8:36:35 PM", "8:36:41 PM", "8:36:47 PM", "8:36:53 PM"],
+            datasets: [{
+                label: 'Traffic (Mbps)',
+                data: [10, 30, 20, 25, 5, 35],
+                borderColor: '#fd7e14',
+                backgroundColor: 'rgba(253, 126, 20, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        }
+    });
+</script>
+</body>
+</html>

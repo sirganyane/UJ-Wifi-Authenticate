@@ -1,0 +1,12 @@
+ldap {
+    server = "ldaps://ad.uj.ac.za" # Your AD/LDAP server address
+    identity = "CN=ServiceAccount,OU=Services,DC=uj,DC=ac,DC=za"
+    password = "SecureServicePassword"
+    
+    base_dn = "DC=uj,DC=ac,DC=za"
+    
+    user {
+        base_dn = "${..base_dn}"
+        filter = "(sAMAccountName=%{%{Stripped-User-Name}:-%{User-Name}})"
+    }
+}

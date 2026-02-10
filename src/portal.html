@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UJ WiFi | Student & Staff Portal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --uj-orange: #FF8C00; --uj-dark: #121212; }
+        body { background-color: #f8f9fa; font-family: 'Inter', sans-serif; }
+        .navbar { background-color: var(--uj-dark); border-bottom: 4px solid var(--uj-orange); }
+        .stat-card { border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .usage-bar { height: 10px; border-radius: 5px; }
+        .device-icon { font-size: 1.5rem; color: var(--uj-orange); }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark p-3">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">UJ <span style="color:var(--uj-orange)">WIFI</span> PORTAL</a>
+        <div class="d-flex align-items-center">
+            <span class="text-white me-3 d-none d-md-block">Welcome, <strong>Student 21900123</strong></span>
+            <button class="btn btn-outline-light btn-sm" onclick="location.href='index.html'">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="row g-4">
+        <div class="col-md-8">
+            <div class="card stat-card p-4 mb-4">
+                <h5 class="fw-bold mb-4"><i class="fa fa-chart-pie me-2 text-orange"></i>Monthly Data Usage</h5>
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Total Consumed</span>
+                    <span class="fw-bold">14.2 GB / 20.0 GB</span>
+                </div>
+                <div class="progress usage-bar mb-3">
+                    <div class="progress-bar bg-warning" style="width: 71%"></div>
+                </div>
+                <small class="text-muted">Your data resets in 12 days.</small>
+            </div>
+
+            <div class="card stat-card p-4">
+                <h5 class="fw-bold mb-4"><i class="fa fa-laptop-code me-2 text-orange"></i>Active Sessions</h5>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr class="text-muted small">
+                                <th>DEVICE</th>
+                                <th>IP ADDRESS</th>
+                                <th>CAMPUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fa fa-mobile-alt me-2 device-icon"></i> Samsung Galaxy S21</td>
+                                <td>10.22.5.11</td>
+                                <td>APK (Madibeng)</td>
+                                <td><button class="btn btn-sm btn-outline-danger">Disconnect</button></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-laptop me-2 device-icon"></i> Dell Latitude 5420</td>
+                                <td>10.22.4.98</td>
+                                <td>APK (Library)</td>
+                                <td><button class="btn btn-sm btn-outline-danger">Disconnect</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card stat-card p-4 mb-4 text-center bg-dark text-white">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/af/University_of_Johannesburg_Logo.svg/1200px-University_of_Johannesburg_Logo.svg.png" height="60" class="mb-3 mx-auto">
+                <h6 class="mb-1">Account Status</h6>
+                <span class="badge bg-success mb-3">Active / Verified</span>
+                <hr class="border-secondary">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-warning fw-bold" onclick="alert('Password reset link sent to UJ Email')">Reset WiFi Password</button>
+                    <button class="btn btn-outline-light" onclick="alert('Help Ticket Created: Ref #8821')">Report Connection Issue</button>
+                </div>
+            </div>
+            
+            <div class="card stat-card p-4">
+                <h6 class="fw-bold mb-3">Connection Tips</h6>
+                <ul class="small text-muted ps-3">
+                    <li>Always use <strong>eduroam</strong> for encrypted browsing.</li>
+                    <li>Limit background updates to save data.</li>
+                    <li>Visit the ICT office for MAC address whitelisting.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

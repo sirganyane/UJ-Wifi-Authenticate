@@ -1,0 +1,3 @@
+openssl ca -gencrl -keyfile /var/www/uj-wifi/certs/uj_root.key \
+           -cert /var/www/uj-wifi/certs/uj_root.crt \
+           -out /var/www/uj-wifi/certs/uj_root.crl

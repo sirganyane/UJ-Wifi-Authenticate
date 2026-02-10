@@ -1,0 +1,68 @@
+/* UJ Branding & Dashboard Polish */
+:root {
+    --uj-orange: #FF8C00;
+    --uj-dark: #2D2D2D;
+    --uj-gray: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--uj-gray);
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.btn-uj {
+    background-color: var(--uj-orange);
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.btn-uj:hover {
+    background-color: #e67e00;
+    color: white;
+}
+
+/* Admin Specifics */
+.nav-admin {
+    background-color: var(--uj-dark);
+    border-bottom: 4px solid var(--uj-orange);
+}
+
+.status-indicator {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #28a745;
+    margin-right: 5px;
+}
+
+@media print {
+    body * { visibility: hidden; }
+    #print-section, #print-section * { visibility: visible; }
+    #print-section {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: block !important;
+    }
+    .voucher-card {
+        border: 1px dashed #333;
+        padding: 15px;
+        margin: 10px;
+        float: left;
+        width: 30%;
+        text-align: center;
+    }
+}

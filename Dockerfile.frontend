@@ -1,0 +1,16 @@
+FROM node:18-alpine
+
+# Use the path from your docker-compose error logs
+WORKDIR /usr/src/app
+
+# Copy package files and install Express
+COPY package*.json ./
+RUN npm install
+
+# Copy your portal files (index.js, index.html, etc.)
+COPY . .
+
+EXPOSE 3070
+
+# Run the portal via the script we created in package.json
+CMD ["npm", "start"]

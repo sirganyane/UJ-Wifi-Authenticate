@@ -1,0 +1,2 @@
+# Assuming you are in the project root
+Copy-Item ".\certs\uj_root_ca.crt" ".\uj-wifi-provisioning\certs\uj_root.crt"

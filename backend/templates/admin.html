@@ -1,0 +1,129 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<div class="container-fluid mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 style="font-weight: 800; border-left: 5px solid #FF8C00; padding-left: 15px;">
+            UJ WIFI <span style="color: #FF8C00;">COMMAND CENTER</span>
+        </h2>
+        <button onclick="systemReset()" class="btn btn-danger shadow-sm">🧹 FULL NETWORK FLUSH</button>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-dark text-white shadow-sm p-3">
+                <h6>Active Students</h6>
+                <h2 id="health-active">0</h2>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-primary text-white shadow-sm p-3">
+                <h6>Network Health</h6>
+                <h2 id="health-score">100%</h2>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark shadow-sm p-3">
+                <h6>Guest Vouchers</h6>
+                <h2 id="health-vouchers">0</h2>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white shadow-sm p-3">
+                <h6>Threats Blocked</h6>
+                <h2 id="health-banned">0</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-dark text-white">Live Network Traffic (Mbps)</div>
+        <div class="card-body">
+            <canvas id="trafficChart" height="80"></canvas>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-secondary text-white">Active Campus Connections</div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr><th>Student ID</th><th>IP Address</th><th>MAC Address</th><th>Action</th></tr>
+                </thead>
+                <tbody id="session-table"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-uj-dark">Voucher Management</div>
+                <div class="card-body">
+                    <button onclick="generateVoucher()" class="btn btn-warning w-100 mb-2">+ Generate New Voucher</button>
+                    <div id="voucher-list" class="d-flex flex-wrap gap-1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header">Quick Policy Update</div>
+                <div class="card-body">
+                    <select id="speed-limit" class="form-select mb-2">
+                        <option>5 Mbps (Standard)</option>
+                        <option>20 Mbps (High Speed)</option>
+                    </select>
+                    <button class="btn btn-dark w-100">Push Policy to Frontend</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // 1. Chart Logic
+    const ctx = document.getElementById('trafficChart').getContext('2d');
+    let trafficChart = new Chart(ctx, {
+        type: 'line',
+        data: { labels: [], datasets: [{ label: 'Traffic (Mbps)', borderColor: '#FF8C00', data: [], fill: true }] }
+    });
+
+    function updateDashboard() {
+        // Fetch Health Stats
+        fetch('/api/network-health').then(res => res.json()).then(data => {
+            document.getElementById('health-active').innerText = data.active_users;
+            document.getElementById('health-banned').innerText = data.banned_count;
+            document.getElementById('health-vouchers').innerText = data.vouchers_available;
+            document.getElementById('health-score').innerText = data.efficiency + "%";
+        });
+
+        // Fetch Sessions
+        fetch('/api/active-sessions').then(res => res.json()).then(data => {
+            document.getElementById('session-table').innerHTML = data.map(s => `
+                <tr><td>${s.username}</td><td>${s.ip}</td><td><code>${s.mac}</code></td>
+                <td><button class="btn btn-sm btn-outline-danger">Kick</button></td></tr>
+            `).join('');
+        });
+
+        // Update Chart
+        const time = new Date().toLocaleTimeString();
+        if(trafficChart.data.labels.length > 15) { trafficChart.data.labels.shift(); trafficChart.data.datasets[0].data.shift(); }
+        trafficChart.data.labels.push(time);
+        trafficChart.data.datasets[0].data.push(Math.random() * 50);
+        trafficChart.update();
+    }
+
+    function generateVoucher() {
+        fetch('/api/generate-voucher', {method: 'POST'}).then(res => res.json()).then(data => {
+            document.getElementById('voucher-list').innerHTML += `<span class="badge bg-light text-dark border p-2">${data.code}</span>`;
+        });
+    }
+
+    function systemReset() {
+        if(confirm("Kick all users?")) fetch('/api/system-reset', {method:'POST'}).then(() => location.reload());
+    }
+
+    setInterval(updateDashboard, 3000);
+    updateDashboard();
+</script>
+{% endblock %}

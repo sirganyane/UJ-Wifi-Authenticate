@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family: Arial, sans-serif; color: #333;">
+    <div style="background-color: #FF8C00; padding: 20px; text-align: center;">
+        <h1 style="color: white; margin: 0;">UJ WiFi Authenticated</h1>
+    </div>
+    <div style="padding: 20px; border: 1px solid #ddd;">
+        <p>Hello <strong>{{ student_id }}</strong>,</p>
+        <p>You have successfully connected to the campus network. Here are your session details:</p>
+        <ul>
+            <li><strong>Daily Data Cap:</strong> {{ cap_gb }} GB</li>
+            <li><strong>Session Duration:</strong> {{ timeout }} Minutes</li>
+            <li><strong>MAC Address:</strong> {{ mac }}</li>
+        </ul>
+        <p style="color: #666; font-size: 0.9em;">
+            <em>Note: Once you reach your {{ cap_gb }}GB limit, your access will be restricted until tomorrow.</em>
+        </p>
+        <hr>
+        <p>Happy studying!<br><strong>UJ Network Admin Team</strong></p>
+    </div>
+</body>
+</html>

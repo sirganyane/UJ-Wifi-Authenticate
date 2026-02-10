@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>SSID_STR</key>
+            <string>UJ_Secure_WiFi</string>
+            <key>HIDDEN_NETWORK</key>
+            <false/>
+            <key>EncryptionType</key>
+            <string>WPA2</string>
+            <key>PayloadIdentifier</key>
+            <string>com.uj.wifi.payload</string>
+            <key>PayloadType</key>
+            <string>com.apple.wifi.managed</string>
+            <key>PayloadUUID</key>
+            <string>5C7D9A4E-7B93-4B9F-8E2D-5A8C92B10F34</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+        <dict>
+            <key>PayloadCertificateFileName</key>
+            <string>uj_root_ca.crt</string>
+            <key>PayloadContent</key>
+            <data>MIIDGTCCAgGgAwIBAgIQFi1F9oTcrpJGIs1fxxS+kjANBgkqhkiG9w0BAQsFADAvMQswCQYDVQQGEwJaQTELMAkGA1UECgwCVUoxEzARBgNVBAMMClVKLVJvb3QtQ0EwHhcNMjYwMTI5MDkwMzU3WhcNMjcwMTI5MDkyMzU3WjAvMQswCQYDVQQGEwJaQTELMAkGA1UECgwCVUoxEzARBgNVBAMMClVKLVJvb3QtQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCwYugHNdQJ8zt7Gz5xNlHCey9aOfrQx4Sb3m/7DWDrq+FArNkVMURfOFUwrLE403he4Kw3+9Vuo35n5TPgUlW85SlxP7JkMdN3tj/DiT6PBwljsfeOaaIOMMhYhgLn+UOJvz0XO0vr3hgpnrfyBrMHaa32AU+GepFNrxCe/8u8KwbBCHNc0Nq4MWAOx2AynIQJIqA7toSnsopk73u5Pl+NfavTw9xGs3jLEw1RnyKUl7hNINZbVvsT3ZvuvRAC4iRhIvz7fCSxPGjn8VC6pG4oFY+5seHaXybtNKRgBBmrw+K/0+MkAtUeODshqKvxgQ1O122RPUN5u4yc3MArMjElAgMBAAGjMTAvMA4GA1UdDwEB/wQEAwIBhjAdBgNVHQ4EFgQUg1FsbuvwMWatPl0vQltzIJKQy9owDQYJKoZIhvcNAQELBQADggEBAKxcZn57w0tg0I0gxKkh5O11a+3d9hZ448Kbxt3CIcQrMcqfkTCs4iHRzlV6zD/a5NkibWUW+/L1s5eJSSQIxsQixH0znd3/kuYJfVvuVNPBLapAx4cUUgIS7YetoO/haxZ1s64abfRDdJjWzrpcQPHzNzF2Q5XEu+vRfLu1IPCov/ftvZ51qIdoo2HezUnfFXKcGVSyGRPjCh6bPgohOzuPsKD4uYUnGaO+aHp2XuRDDbA7/1GOyhoe9Zt3wQ/uiOia3frKFVHKegUCJLW0i9taizeppXDUvQhAusR3QgCuCx2cY9z3jBtynUBb3nCWGcYGvo5ro8e3MSpGcLK0pME=</data>
+            <key>PayloadIdentifier</key>
+            <string>com.uj.rootca.payload</string>
+            <key>PayloadType</key>
+            <string>com.apple.security.root</string>
+            <key>PayloadUUID</key>
+            <string>A1B2C3D4-E5F6-4A5B-8C9D-0E1F2A3B4C5D</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>UJ WiFi Provisioning</string>
+    <key>PayloadIdentifier</key>
+    <string>com.uj.profile.main</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>F9E8D7C6-B5A4-4321-8765-0987654321BA</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
+

@@ -1,0 +1,10 @@
+# Disable directory browsing
+Options -Indexes
+
+# Ensure mobileconfigs are served with correct MIME type [cite: 148]
+AddType application/x-apple-aspen-config .mobileconfig
+
+# Force HTTPS for all onboarding traffic [cite: 226]
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

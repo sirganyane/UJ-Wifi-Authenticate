@@ -1,8 +1,12 @@
-FROM node:18-slim
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm config set strict-ssl false
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD [ "node", "server.js" ]
+FROM nginx:stable-alpine
+
+# Clean default files
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy all source files to the Nginx web root
+COPY src/admin.html /usr/share/nginx/html/admin.html
+COPY src/index.html /usr/share/nginx/html/index.html
+COPY src/portal.html /usr/share/nginx/html/portal.html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WiFi@UJ | Welcome</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/af/University_of_Johannesburg_Logo.svg/1200px-University_of_Johannesburg_Logo.svg.png" 
+     alt="UJ Logo" 
+     class="logo" 
+     style="max-width: 200px; height: auto; margin-bottom: 20px;"> 
+     
+    <h1>Welcome to WiFi@UJ</h1>
+    <p>Select your connection type to continue:</p>
+    <div class="options">
+      <a class="btn" href="login.html">Student / Staff Login</a>
+      <a class="btn secondary" href="/onboard/guest">Guest Access</a>
+    </div>
+  </main>
+</body>
+</html>
+
+<div class="wifi-settings-card">
+    <h3>📶 Manual Configuration for UJ Networks</h3>
+    <p>Applicable to: <b>WIFI@UJ, Staff_Access, Guest_WIFI@UJ</b></p>
+    <table border="1">
+        <tr><td><b>Security</b></td><td>WPA/WPA2/WPA3-Enterprise</td></tr>
+        <tr><td><b>EAP Method</b></td><td>PEAP</td></tr>
+        <tr><td><b>Phase 2</b></td><td>MSCHAPV2</td></tr>
+        <tr><td><b>CA Certificate</b></td><td>Trust on First Use / Use System</td></tr>
+        <tr><td><b>Domain</b></td><td>uj.ac.za</td></tr>
+        <tr><td><b>Identity</b></td><td>Your Student Number</td></tr>
+        <tr><td><b>Anonymous Identity</b></td><td>Your Student Email</td></tr>
+    </table>
+    <br>
+    <button onclick="window.location.href='/login.html'">Proceed to Login</button>
+</div>

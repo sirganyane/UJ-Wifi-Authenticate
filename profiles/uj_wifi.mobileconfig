@@ -1,0 +1,18 @@
+<dict>
+    <key>PayloadDisplayName</key><string>WiFi@UJ Staff</string>
+    <key>PayloadType</key><string>Configuration</string>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadType</key><string>com.apple.security.root</string>
+            <key>PayloadContent</key><data>BASE64_ENCODED_UJ_CA_CERT</data>
+        </dict>
+        <dict>
+            <key>PayloadType</key><string>com.apple.wifi.managed</string>
+            <key>SSID_STR</key><string>WiFi@UJ</string>
+            <key>EAPClientConfiguration</key>
+            <dict>
+                <key>AcceptEAPTypes</key><array><integer>25</integer></array> </dict>
+        </dict>
+    </array>
+</dict>

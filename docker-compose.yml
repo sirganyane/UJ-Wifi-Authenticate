@@ -1,32 +1,18 @@
 services:
+  uj-admin-panel:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: uj_wifi_backend
+    ports:
+      - "5001:5001"
+    restart: always
+
   uj-portal:
-    build: .
-    container_name: uj_wifi_portal
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: uj_wifi_frontend
     ports:
-      - "3000:3000"
-    depends_on:
-      - uj-ldap
+      - "3000:80"
     restart: always
-
-  uj-ldap:
-    image: osixia/openldap:latest
-    container_name: uj_ldap_server
-    environment:
-      - LDAP_ORGANISATION=University of Johannesburg
-      - LDAP_DOMAIN=uj.ac.za
-      - LDAP_ADMIN_PASSWORD=admin_password
-    ports:
-      - "389:389"
-    restart: always
-
-  uj-db:
-    image: mysql:8.0
-    container_name: uj_audit_db
-    environment:
-      - MYSQL_ROOT_PASSWORD=uj_admin_2026
-      - MYSQL_DATABASE=uj_wifi_db
-    restart: always
-
-# Volumes must be at the root level, not inside services
-volumes:
-  uj_data:

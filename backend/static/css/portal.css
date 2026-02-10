@@ -1,0 +1,59 @@
+/* UJ Signature Colors */
+:root {
+    --uj-orange: #FF8C00;
+    --uj-grey: #373A36;
+    --uj-white: #FFFFFF;
+    --uj-light-grey: #F4F4F4;
+}
+
+body {
+    background-color: var(--uj-light-grey);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.portal-card {
+    background: var(--uj-white);
+    border-top: 8px solid var(--uj-orange);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.uj-logo {
+    display: block;
+    margin: 0 auto 1.5rem;
+    max-width: 180px;
+}
+
+.btn-uj {
+    background-color: var(--uj-orange);
+    color: white;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+}
+
+.btn-uj:hover {
+    background-color: #e67e00;
+    color: white;
+}
+
+.form-control:focus {
+    border-color: var(--uj-orange);
+    box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
+}
+
+.terms-text {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 1.5rem;
+    text-align: center;
+}
