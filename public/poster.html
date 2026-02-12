@@ -1,30 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UJ WiFi Access | Poster</title>
     <style>
-        body { font-family: 'Arial', sans-serif; text-align: center; color: #00467F; padding: 50px; }
-        .poster { border: 10px solid #00467F; padding: 40px; border-radius: 20px; max-width: 600px; margin: auto; }
+        :root {
+            --uj-blue: #00467F;
+            --uj-orange: #FF8C00;
+        }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            text-align: center; 
+            color: var(--uj-blue); 
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .poster { 
+            border: 10px solid var(--uj-blue); 
+            padding: 40px; 
+            border-radius: 20px; 
+            max-width: 600px; 
+            margin: auto; 
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
         .logo { width: 150px; margin-bottom: 20px; }
-        h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .qr-code { width: 300px; height: 300px; margin: 20px 0; border: 5px solid #ee7623; } /* UJ Orange border */
-        .instructions { font-size: 1.2em; color: #333; }
-        .footer { margin-top: 30px; font-weight: bold; font-size: 0.9em; }
+        h1 { font-size: 2.5em; margin-bottom: 5px; color: var(--uj-blue); }
+        .campus-label { font-size: 1.2em; font-weight: bold; margin-bottom: 20px; color: var(--uj-orange); }
+        
+        /* QR Code Styling */
+        .qr-container {
+            margin: 25px auto;
+            width: 280px;
+            padding: 15px;
+            border: 5px dashed var(--uj-orange);
+            border-radius: 15px;
+        }
+        .qr-code { width: 100%; height: auto; display: block; }
+        
+        .instructions { font-size: 1.1em; color: #333; margin-bottom: 30px; }
+        
+        /* Functional Button Styling */
+        .btn-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            max-width: 320px; 
+            margin: 20px auto; 
+        }
+        .btn {
+            padding: 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+        }
+        .btn:active { transform: scale(0.98); }
+        
+        .btn-staff { background: var(--uj-orange); color: white; box-shadow: 0 4px #c45a1d; }
+        .btn-guest { background: var(--uj-blue); color: white; box-shadow: 0 4px #002d54; }
+        
+        .footer { margin-top: 40px; font-weight: bold; font-size: 0.85em; border-top: 1px solid #eee; padding-top: 20px; }
     </style>
 </head>
 <body>
+
     <div class="poster">
+        <img src="https://www.uj.ac.za/wp-content/uploads/2021/11/uj-logo.png" class="logo" alt="UJ Logo">
         <h1>UJ WIFI ACCESS</h1>
-        <p>Madibeng Library - Campus Network</p>
+        <div class="campus-label">Madibeng Library - Campus Network</div>
         
-        <img src="/images/UJ_WiFi_Login.png" class="qr-code" alt="Scan to Connect">
-        
-        <div class="instructions">
-            <p>1. Scan the QR Code</p>
-            <p>2. Login with UJ Student/Staff ID</p>
-            <p>3. Enjoy High-Speed Internet</p>
+        <div class="qr-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://your-tunnel-url.ngrok.io/portal.html" class="qr-code" alt="Scan to Connect">
+            <p style="margin-top: 10px; font-weight: bold; font-size: 0.9em;">SCAN TO AUTHENTICATE</p>
         </div>
         
-        <div class="footer">University of Johannesburg | ICT Governance & Support</div>
+        <div class="instructions">
+            <p>Select your access type to register your MAC address:</p>
+            
+            <div class="btn-group">
+                <a href="portal.html" class="btn btn-staff">STUDENT & STAFF LOGIN</a>
+                <a href="guest.html" class="btn btn-guest">GUEST ACCESS</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            University of Johannesburg | ICS Governance & Support<br>
+            <span style="color: var(--uj-orange);">"The Future Reimagined"</span>
+        </div>
     </div>
+
 </body>
 </html>

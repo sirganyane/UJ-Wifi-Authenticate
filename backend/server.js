@@ -3,21 +3,22 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-// Serve all static files from the 'public' folder
-app.use(express.static(path.join(__dirname, 'public')));
+// This tells Express that the 'public' folder is one level UP from 'backend'
+const publicPath = path.join(__dirname, '../public');
 
-// Default route (The Admin Login or Poster)
+app.use(express.static(publicPath));
+
+// Route for the main entry point
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'admin_login.html'));
+    res.sendFile(path.join(publicPath, 'admin_login.html'));
 });
 
-// Start the server
 app.listen(PORT, () => {
     console.log(`
     ============================================
     UJ WIFI COMMAND CENTER IS ONLINE
     URL: http://localhost:${PORT}
-    Status: Gateway APK-01 Connected
+    Serving files from: ${publicPath}
     ============================================
     `);
 });

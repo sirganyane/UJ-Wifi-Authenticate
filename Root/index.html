@@ -1,0 +1,17 @@
+// Function to be called in index.html to reflect tunnel traffic
+function registerTunnelConnection(id, type) {
+    const stream = document.getElementById('monitor-stream');
+    const timestamp = new Date().toLocaleTimeString();
+    const ip = `10.22.${Math.floor(Math.random()*10)}.${Math.floor(Math.random()*254)}`;
+    
+    const row = `
+        <tr>
+            <td>${timestamp}</td>
+            <td>${id}</td>
+            <td>${ip}</td>
+            <td>GATEWAY_${type.toUpperCase()}</td>
+            <td><span class="badge bg-success">CONNECTED</span></td>
+            <td><button class="btn btn-sm btn-outline-danger">KICK</button></td>
+        </tr>`;
+    stream.innerHTML = row + stream.innerHTML;
+}

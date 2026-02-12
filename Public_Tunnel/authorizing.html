@@ -1,0 +1,11 @@
+// Replace the startAuth script in authorizing.html
+function startAuth() {
+    const progress = document.getElementById('progress');
+    // Triggers CSS transition: width 5s linear
+    progress.style.width = '100%'; 
+
+    setTimeout(function() {
+        // Logic: Redirect to success.html instead of external uLink
+        window.location.href = "success.html";
+    }, 5500); 
+}

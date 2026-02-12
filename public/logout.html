@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Terminated | WiFi@UJ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --uj-blue: #00467F;
+            --uj-orange: #FF8C00;
+            --uj-dark: #1e1e1e;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logout-container {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            border-top: 6px solid var(--uj-blue);
+        }
+
+        .status-circle {
+            width: 80px;
+            height: 80px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--uj-dark);
+            font-size: 2rem;
+            border: 2px dashed #ddd;
+        }
+
+        h2 { color: var(--uj-blue); font-weight: 700; margin-bottom: 0.5rem; }
+        p { color: #6c757d; font-size: 0.95rem; margin-bottom: 2rem; }
+
+        .btn-reconnect {
+            background-color: var(--uj-orange);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-reconnect:hover {
+            background-color: #e67e00;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .footer-logo {
+            margin-top: 2rem;
+            opacity: 0.5;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="logout-container">
+    <div class="status-circle">
+        🔒
+    </div>
+    
+    <h2>Session Ended</h2>
+    <p>You have been successfully signed out. Your device is no longer authorized to access the <strong>WiFi@UJ</strong> network.</p>
+
+    <a href="portal.html" class="btn-reconnect">Sign In Again</a>
+
+    <div class="mt-4">
+        <hr>
+        <img src="https://www.uj.ac.za/wp-content/uploads/2021/11/uj-logo.png" class="footer-logo" alt="UJ Logo">
+        <div class="mt-2" style="font-size: 0.75rem; color: #aaa;">
+            Technical Support: +27 (0)11 559 4555
+        </div>
+    </div>
+</div>
+
+<script>
+    // Logic to clear local temporary storage if needed
+    window.onload = function() {
+        console.log("UJ_GATEWAY: Session cache cleared.");
+        // Clear any specific session flags if you're using localStorage
+        localStorage.removeItem('uj_wifi_auth');
+    };
+</script>
+
+</body>
+</html>
